@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../hero.service';
 import { Hero } from '../interfaces/Hero';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hero-detail',
@@ -29,4 +29,10 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
+  }
 }
